@@ -30,9 +30,15 @@ Claude Code is powerful, but without structure it tends to lose context between 
 npx ai-dev-rails my-project
 ```
 
+To overwrite existing files (e.g. after updating the package):
+
+```bash
+npx ai-dev-rails my-project --force
+```
+
 The CLI:
 
-1. Copies all agent and command files to `.claude/`
+1. Copies all agent and command files to `.claude/` (skips existing files unless `--force` is used)
 2. Creates the `thoughts/` directory structure
 
 After running, you should:

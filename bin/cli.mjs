@@ -7,15 +7,21 @@ import { fileURLToPath } from 'node:url'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const TEMPLATE_DIR = resolve(__dirname, '..', 'template')
 
-const projectName = process.argv[2]
+const args = process.argv.slice(2)
+const force = args.includes('-f') || args.includes('--force')
+const positional = args.filter(a => a !== '-f' && a !== '--force')
+const projectName = positional[0]
 
 if (!projectName) {
   console.error(`
-Usage: npx ai-dev-rails <project-name>
+Usage: npx ai-dev-rails <project-name> [-f | --force]
+
+Options:
+  -f, --force   Overwrite existing files (default: skip)
 
 Example:
   npx ai-dev-rails my-awesome-app
-  npx ai-dev-rails api-service
+  npx ai-dev-rails api-service --force
 
 Sets up the structured AI development methodology for your project.
 Run this from the root of your project directory.
@@ -54,6 +60,7 @@ const claudeTarget = join(targetDir, '.claude')
 const subdirs = ['agents', 'commands']
 let copiedFiles = 0
 let skippedFiles = 0
+let overwrittenFiles = 0
 
 for (const dir of subdirs) {
   const srcDir = join(claudeSource, dir)
@@ -66,8 +73,11 @@ for (const dir of subdirs) {
     const dst = join(dstDir, relPath)
 
     if (existsSync(dst)) {
-      skippedFiles++
-      continue
+      if (!force) {
+        skippedFiles++
+        continue
+      }
+      overwrittenFiles++
     }
 
     mkdirSync(dirname(dst), { recursive: true })
@@ -100,7 +110,7 @@ for (const dir of thoughtsDirs) {
 console.log(`
 ai-dev-rails installed for "${projectName}"
 
-  Files copied:    ${copiedFiles} (${skippedFiles} skipped — already exist)
+  Files copied:    ${copiedFiles}${overwrittenFiles ? ` (${overwrittenFiles} overwritten)` : ''}${skippedFiles ? ` (${skippedFiles} skipped — already exist)` : ''}
   Dirs created:    ${createdDirs} under thoughts/
 
 Structure:
