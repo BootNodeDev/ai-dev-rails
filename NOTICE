@@ -1,0 +1,8 @@
+ai-dev-rails
+Copyright 2025, ai-dev-rails Contributors
+
+This product includes material derived from HumanLayer
+(https://github.com/humanlayer/humanlayer), licensed under the
+Apache License 2.0. Original files were modified to remove
+project-specific references and make the methodology applicable
+to any codebase.
