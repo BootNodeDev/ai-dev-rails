@@ -57,7 +57,7 @@ function readdirRecursive(dir) {
 const claudeSource = join(TEMPLATE_DIR, '.claude')
 const claudeTarget = join(targetDir, '.claude')
 
-const subdirs = ['agents', 'commands']
+const subdirs = ['agents', 'commands', 'hooks']
 let copiedFiles = 0
 let skippedFiles = 0
 let overwrittenFiles = 0
@@ -117,6 +117,7 @@ Structure:
   .claude/
     agents/       — 6 specialized sub-agents
     commands/     — research, plan, implement, validate, commit, PR workflows
+    hooks/        — context-saving hooks (compress verbose bash output)
 
   thoughts/
     shared/       — team artifacts (research, plans, tickets, prs, handoffs)

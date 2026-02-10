@@ -68,6 +68,7 @@ The CLI copies agents and commands into your `.claude/` directory and creates th
 .claude/
   agents/       6 specialized sub-agents
   commands/     17 workflow commands (slash commands)
+  hooks/        context-saving hooks
 thoughts/
   shared/       Team artifacts (research, plans, tickets, prs, handoffs)
   global/       Cross-repo thoughts
@@ -131,6 +132,16 @@ Agents are specialized sub-processes that the commands spawn internally via the 
 | **thoughts-locator**        | Discovers relevant documents in `thoughts/`.                                                      |
 | **thoughts-analyzer**       | Deep-dives into `thoughts/` documents to extract decisions, constraints, and actionable insights. |
 | **web-search-researcher**   | Searches the web for documentation, best practices, and technical solutions.                      |
+
+## Hooks
+
+Hooks run automatically during Claude Code events to save context tokens and improve agent performance. They are installed to `.claude/hooks/`.
+
+| Hook | Event | What it does |
+| --- | --- | --- |
+| **compress-bash-output** | `PostToolUse` (Bash) | Compresses successful command output longer than 30 lines to first 5 + last 10 lines. Failed commands pass through unmodified so the agent can debug. |
+
+Hooks are configured in `.claude/hooks/hooks.json` and run automatically — no manual setup required.
 
 ## The `thoughts/` Directory
 
