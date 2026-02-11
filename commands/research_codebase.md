@@ -241,7 +241,6 @@ Then wait for the user's research query.
   - Always document paths by removing ONLY "searchable/" - preserve all other subdirectories
   - Examples of correct transformations:
     - `thoughts/searchable/[username]/old_stuff/notes.md` → `thoughts/[username]/old_stuff/notes.md`
-    - `thoughts/searchable/shared/prs/123.md` → `thoughts/shared/prs/123.md`
     - `thoughts/searchable/global/shared/templates.md` → `thoughts/global/shared/templates.md`
   - NEVER change [username]/ to shared/ or vice versa - preserve the exact directory structure
   - This ensures paths are correct for editing and navigation

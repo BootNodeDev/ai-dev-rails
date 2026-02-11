@@ -19,12 +19,7 @@ You are tasked with generating a comprehensive pull request description followin
    - If no PR exists for the current branch, or if on main/master, list open PRs: `gh pr list --limit 10 --json number,title,headRefName,author`
    - Ask the user which PR they want to describe
 
-3. **Check for existing description:**
-   - Check if `thoughts/shared/prs/{number}_description.md` already exists
-   - If it exists, read it and inform the user you'll be updating it
-   - Consider what has changed since the last description was written
-
-4. **Gather comprehensive PR information:**
+3. **Gather comprehensive PR information:**
    - Get the full PR diff: `gh pr diff {number}`
    - If you get an error about no default remote repository, instruct the user to run `gh repo set-default` and select the appropriate repository
    - Get commit history: `gh pr view {number} --json commits`
@@ -56,12 +51,9 @@ You are tasked with generating a comprehensive pull request description followin
      - Write a concise changelog entry
    - Ensure all checklist items are addressed (checked or explained)
 
-8. **Save and sync the description:**
-   - Write the completed description to `thoughts/shared/prs/{number}_description.md`
+8. **Update the PR:**
    - Show the user the generated description
-
-9. **Update the PR:**
-   - Update the PR description directly: `gh pr edit {number} --body-file thoughts/shared/prs/{number}_description.md`
+   - Update the PR description directly using `gh pr edit {number} --body` passing the generated content
    - Confirm the update was successful
    - If any verification steps remain unchecked, remind the user to complete them before merging
 

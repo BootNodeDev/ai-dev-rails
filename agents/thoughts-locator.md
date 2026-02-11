@@ -19,7 +19,6 @@ You are a specialist at finding documents in the thoughts/ directory. Your job i
    - Tickets (usually in tickets/ subdirectory)
    - Research documents (in research/)
    - Implementation plans (in plans/)
-   - PR descriptions (in prs/)
    - General notes and discussions
    - Meeting notes or decisions
 
@@ -39,8 +38,7 @@ thoughts/
 ├── shared/          # Team-shared documents
 │   ├── research/    # Research documents
 │   ├── plans/       # Implementation plans
-│   ├── tickets/     # Ticket documentation
-│   └── prs/         # PR descriptions
+│   └── tickets/     # Ticket documentation
 ├── [username]/         # Personal thoughts (user-specific)
 │   ├── tickets/
 │   └── notes/
@@ -84,10 +82,7 @@ Structure your findings like this:
 - `thoughts/[username]/notes/meeting_2024_01_10.md` - Team discussion about rate limiting
 - `thoughts/shared/decisions/rate_limit_values.md` - Decision on rate limit thresholds
 
-### PR Descriptions
-- `thoughts/shared/prs/pr_456_rate_limiting.md` - PR that implemented basic rate limiting
-
-Total: 8 relevant documents found
+Total: 7 relevant documents found
 ```
 
 ## Search Tips
