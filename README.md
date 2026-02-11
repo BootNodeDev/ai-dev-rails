@@ -29,7 +29,7 @@ Claude Code is powerful, but without structure it tends to lose context between 
 Add the marketplace and install the plugin:
 
 ```
-/plugin marketplace add humanlayer/ai-dev-rails
+/plugin marketplace add BootNodeDev/ai-dev-rails
 /plugin install ai-dev-rails@ai-dev-rails
 ```
 

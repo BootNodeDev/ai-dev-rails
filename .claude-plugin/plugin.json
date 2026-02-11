@@ -6,8 +6,8 @@
     "name": "Nicolás Domínguez",
     "email": "nico@bootnode.dev"
   },
-  "homepage": "https://github.com/humanlayer/ai-dev-rails",
-  "repository": "https://github.com/humanlayer/ai-dev-rails",
+  "homepage": "https://github.com/BootNodeDev/ai-dev-rails",
+  "repository": "https://github.com/BootNodeDev/ai-dev-rails",
   "license": "MIT",
   "keywords": ["workflow", "methodology", "research", "planning", "implementation"]
 }
