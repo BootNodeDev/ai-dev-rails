@@ -24,27 +24,32 @@ Claude Code is powerful, but without structure it tends to lose context between 
 /resume_handoff     →  Reads handoff, validates current state, creates task list
 ```
 
-## Setup
+## Installation
 
-```bash
-npx ai-dev-rails my-project
+Add the marketplace and install the plugin:
+
+```
+/plugin marketplace add humanlayer/ai-dev-rails
+/plugin install ai-dev-rails@ai-dev-rails
 ```
 
-To overwrite existing files (e.g. after updating the package):
+After installing, you should:
+
+1. Create the `thoughts/` directory structure in your project:
 
 ```bash
-npx ai-dev-rails my-project --force
+mkdir -p thoughts/shared/{research,plans,tickets,prs,handoffs} thoughts/global
 ```
 
-The CLI:
+2. Add the `thoughts/` gitignore rules to your `.gitignore`:
 
-1. Copies all agent and command files to `.claude/` (skips existing files unless `--force` is used)
-2. Creates the `thoughts/` directory structure
+```gitignore
+thoughts/*
+!thoughts/shared/
+!thoughts/global/
+```
 
-After running, you should:
-
-1. Add the `thoughts/` gitignore rules shown above to your `.gitignore`
-2. Allow Claude Code to read and write in `thoughts/` without prompting — add to your `.claude/settings.json`:
+3. Allow Claude Code to read and write in `thoughts/` without prompting — add to your `.claude/settings.json`:
 
 ```json
 {
@@ -58,20 +63,14 @@ After running, you should:
 }
 ```
 
-3. Optionally, add a reference to the methodology in your `CLAUDE.md` so Claude Code is aware of the available commands
+4. Optionally, add a reference to the methodology in your `CLAUDE.md` so Claude Code is aware of the available commands
 
 ## What You Get
 
-The CLI copies agents and commands into your `.claude/` directory and creates the `thoughts/` directory structure:
-
 ```
-.claude/
-  agents/       6 specialized sub-agents
-  commands/     17 workflow commands (slash commands)
-  hooks/        context-saving hooks
-thoughts/
-  shared/       Team artifacts (research, plans, tickets, prs, handoffs)
-  global/       Cross-repo thoughts
+agents/       6 specialized sub-agents
+commands/     17 workflow commands (slash commands)
+hooks/        context-saving hooks
 ```
 
 ## Commands Reference
@@ -135,13 +134,11 @@ Agents are specialized sub-processes that the commands spawn internally via the 
 
 ## Hooks
 
-Hooks run automatically during Claude Code events to save context tokens and improve agent performance. They are installed to `.claude/hooks/`.
+Hooks run automatically during Claude Code events to save context tokens and improve agent performance.
 
 | Hook | Event | What it does |
 | --- | --- | --- |
 | **compress-bash-output** | `PostToolUse` (Bash) | Compresses successful command output longer than 30 lines to first 5 + last 10 lines. Failed commands pass through unmodified so the agent can debug. |
-
-Hooks are configured in `.claude/hooks/hooks.json` and run automatically — no manual setup required.
 
 ## The `thoughts/` Directory
 
@@ -157,14 +154,6 @@ thoughts/
 │   └── handoffs/    # Session handoff documents
 ├── [username]/      # Personal notes (git-ignored, local only)
 └── global/          # Cross-repository thoughts (committed to git)
-```
-
-To commit `shared/` and `global/` while keeping personal directories local, you should add the following to your `.gitignore`:
-
-```gitignore
-thoughts/*
-!thoughts/shared/
-!thoughts/global/
 ```
 
 ### Naming Conventions
