@@ -10,7 +10,7 @@
   "plugins": [
     {
       "name": "ai-dev-rails",
-      "source": ".",
+      "source": "./",
       "description": "Context-efficient development methodology — each stage writes artifacts to disk so the next stage starts clean with exactly the right context",
       "version": "0.1.0-beta.1",
       "author": {
