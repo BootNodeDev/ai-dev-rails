@@ -1,7 +1,7 @@
 {
   "name": "ai-dev-rails",
   "description": "Context-efficient development methodology — each stage writes artifacts to disk so the next stage starts clean with exactly the right context",
-  "version": "0.1.0-beta.2",
+  "version": "0.1.0-beta.3",
   "author": {
     "name": "Nicolás Domínguez",
     "email": "nico@bootnode.dev"
@@ -9,5 +9,18 @@
   "homepage": "https://github.com/BootNodeDev/ai-dev-rails",
   "repository": "https://github.com/BootNodeDev/ai-dev-rails",
   "license": "MIT",
-  "keywords": ["workflow", "methodology", "research", "planning", "implementation"]
+  "keywords": ["workflow", "methodology", "research", "planning", "implementation"],
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/compress-bash-output.sh\""
+          }
+        ]
+      }
+    ]
+  }
 }
