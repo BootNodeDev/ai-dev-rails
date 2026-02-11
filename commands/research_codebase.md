@@ -33,6 +33,12 @@ Then wait for the user's research query.
    - **CRITICAL**: Read these files yourself in the main context before spawning any sub-tasks
    - This ensures you have full context before decomposing the research
 
+   **If the user's input is ambiguous or unclear, clarify before proceeding:**
+   - After reading the mentioned files and the user's query, assess whether you fully understand what they're asking
+   - If there's ambiguity (multiple possible interpretations, unclear scope, vague terms), ask the user **one focused question** to clarify
+   - Only ask what's strictly necessary to avoid researching the wrong thing — this is not a plan approval, it's a comprehension check
+   - If the input is clear and specific, skip this and proceed directly to decomposition
+
 2. **Analyze and decompose the research question:**
    - Break down the user's query into composable research areas
    - Take time to ultrathink about the underlying patterns, connections, and architectural implications the user might be seeking
@@ -81,6 +87,15 @@ Then wait for the user's research query.
    - Verify all thoughts/ paths are correct (e.g., thoughts/[username]/ not thoughts/shared/ for personal files)
    - Highlight patterns, connections, and architectural decisions
    - Answer the user's specific questions with concrete evidence
+
+   **Interactive clarification with the user:**
+
+   After synthesizing, review your findings for things you don't fully understand. For each unclear item, ask the user **one question at a time** and offer three options:
+   - **(a)** The user answers directly — incorporate the answer and continue
+   - **(b)** The user asks you to investigate — use the **web-search-researcher** agent to research it
+   - **(c)** Resolve it later — leave it as an open question to address during planning
+
+   Continue until all gaps are addressed or deferred, then proceed to document generation.
 
 5. **Gather metadata for the research document:**
    - Run `git rev-parse HEAD`, `git branch --show-current`, and `date` to gather metadata
@@ -150,8 +165,8 @@ Then wait for the user's research query.
      ## Related Research
      [Links to other research documents in thoughts/shared/research/]
 
-     ## Open Questions
-     [Any areas that need further investigation]
+     ## Remaining Open Questions
+     [Only items that could not be resolved during interactive clarification — truly unknown areas requiring future investigation. Omit this section if all questions were resolved.]
      ```
 
 7. **Add GitHub permalinks (if applicable):**
