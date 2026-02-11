@@ -1,7 +1,7 @@
 {
   "name": "ai-dev-rails",
   "description": "Context-efficient development methodology — each stage writes artifacts to disk so the next stage starts clean with exactly the right context",
-  "version": "0.1.0-beta.3",
+  "version": "0.1.0-beta.4",
   "author": {
     "name": "Nicolás Domínguez",
     "email": "nico@bootnode.dev"

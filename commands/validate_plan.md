@@ -165,6 +165,33 @@ The validation works best after commits are made, as it can analyze the git hist
 
 Remember: Good validation catches issues before they reach production. Be constructive but thorough in identifying gaps or improvements.
 
+## Update global knowledge index (if applicable)
+
+After validation passes, review the documents in `thoughts/global/` and determine if the implementation introduced **structural changes** that are missing from the index.
+
+Compare the final implementation against the original research — things may have changed during implementation (new tables, renamed components, new patterns). The index should reflect what was actually built, not what was originally planned.
+
+**What qualifies for `thoughts/global/` (add it):**
+- A new file, class, or component that isn't listed in the service map (e.g., new controller, storage, machine)
+- A new table or model added to the database schema
+- A new architectural pattern that didn't exist before (e.g., a new type of triggered job)
+- A correction to existing global docs (e.g., a component was renamed, moved, or removed)
+- A new status grouping, enum value, or constant that other features will need
+
+**What does NOT qualify (do not add it):**
+- Task-specific details (what this particular ticket required)
+- Information already captured in the research or plan documents
+- Verbose explanations — global docs are indices, not documentation
+- Anything that only matters for this feature and won't help future work
+
+**How to update:**
+- Add rows to existing tables, entries to existing lists — do not rewrite sections
+- If no existing document fits, do NOT create a new global doc — flag it to the user as a suggestion
+- Keep the same concise style: table rows, bullet points, file paths with line numbers
+- Each addition should answer: "If a future research agent reads this, will it know WHERE to look and WHAT exists, without having to scan the whole codebase?"
+
+**If nothing new was introduced that isn't already in `thoughts/global/`, skip this step entirely.**
+
 ## Completion
 
 When validation is complete, present the following:
